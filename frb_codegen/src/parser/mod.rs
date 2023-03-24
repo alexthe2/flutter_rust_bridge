@@ -255,7 +255,9 @@ impl<'a> Parser<'a> {
                             type_to_string(ty)
                         )
                     }) {
-                        IrFuncOutput::ResultType(ty) => ty,
+                        IrFuncOutput::ResultType(ty) => {
+                            ty
+                        },
                         IrFuncOutput::Type(ty) => {
                             fallible = false;
                             ty

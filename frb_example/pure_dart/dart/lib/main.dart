@@ -434,6 +434,46 @@ void main(List<String> args) async {
     expect(settings.env.vars[0].field0, "myenv");
   });
 
+  test('dart call getVectorOfAppSettingsNoResult', () async {
+    var settings = (await api.getVectorOfAppSettingsNoResult(count: 10))!;
+    expect(settings.length, 10);
+    for (var setting in settings) {
+      expect(setting.version, "1.0.0-rc.1");
+      expect(setting.mode, ApplicationMode.standalone);
+      expect(setting.env.vars[0].field0, "myenv");
+    }
+  });
+
+  test('dart call vec getAppSettings()', () async {
+    var settings = await api.getVectorOfAppSettings(count: 10);
+    expect(settings.length, 10);
+    for (var setting in settings) {
+      expect(setting.version, "1.0.0-rc.1");
+      expect(setting.mode, ApplicationMode.standalone);
+      expect(setting.env.vars[0].field0, "myenv");
+    }
+  });
+
+  test('dart call optional vec getAppSettings()', () async {
+    var settings = (await api.getVectorOfAppSettingsInOption(count: 10))!;
+    expect(settings.length, 10);
+    for (var setting in settings) {
+      expect(setting.version, "1.0.0-rc.1");
+      expect(setting.mode, ApplicationMode.standalone);
+      expect(setting.env.vars[0].field0, "myenv");
+    }
+  });
+
+  test('dart call optional vec getAppSettings() wo. result', () async {
+    var settings = (await api.getVectorOfAppSettingsInOptionNoResult(count: 10))!;
+    expect(settings.length, 10);
+    for (var setting in settings) {
+      expect(setting.version, "1.0.0-rc.1");
+      expect(setting.mode, ApplicationMode.standalone);
+      expect(setting.env.vars[0].field0, "myenv");
+    }
+  });
+
   test('dart call isAppEmbedded()', () async {
     expect(
         await api.isAppEmbedded(
